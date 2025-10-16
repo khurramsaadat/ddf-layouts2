@@ -178,7 +178,7 @@ export default function HomeContent() {
             </Link>
 
             {/* Electronics */}
-            <Link href="/categories" className="group">
+            <Link href="/electronics" className="group">
               <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
                 <div className="bg-gradient-to-r from-amber-500 to-amber-600 p-6 text-center">
                   <h3 className="text-xl font-bold text-white">Electronics</h3>

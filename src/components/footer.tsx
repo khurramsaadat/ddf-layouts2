@@ -80,9 +80,10 @@ export default function Footer() {
           <div>
             <h4 className="text-base font-semibold mb-3">Navigation</h4>
             <ul className="space-y-1.5 text-xs">
-              <li><Link href="/" className={`${pathname === '/' ? 'text-primary' : 'text-gray-300'} hover:text-primary transition-colors`}>DDF</Link></li>
+              <li><Link href="/ddf" className={`${pathname === '/ddf' ? 'text-primary' : 'text-gray-300'} hover:text-primary transition-colors`}>DDF</Link></li>
               <li><Link href="/promos" className={`${pathname === '/promos' ? 'text-primary' : 'text-gray-300'} hover:text-primary transition-colors`}>Promos</Link></li>
               <li><Link href="/exclusive-promos" className={`${pathname === '/exclusive-promos' ? 'text-primary' : 'text-gray-300'} hover:text-primary transition-colors`}>Exclusive Promos</Link></li>
+              <li><Link href="/electronics" className={`${pathname === '/electronics' ? 'text-primary' : 'text-gray-300'} hover:text-primary transition-colors`}>Electronic</Link></li>
               <li><Link href="/jcd" className={`${pathname === '/jcd' ? 'text-primary' : 'text-gray-300'} hover:text-primary transition-colors`}>JCD</Link></li>
               <li><Link href="/categories" className={`${pathname === '/categories' ? 'text-primary' : 'text-gray-300'} hover:text-primary transition-colors`}>Categories</Link></li>
               <li><Link href="/vendor-list" className={`${pathname === '/vendor-list' ? 'text-primary' : 'text-gray-300'} hover:text-primary transition-colors`}>Vendor List</Link></li>

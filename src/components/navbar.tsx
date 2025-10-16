@@ -3,6 +3,12 @@
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 
 interface NavbarProps {
   searchTerm?: string;
@@ -30,14 +36,30 @@ export default function Navbar({ searchTerm = '', onSearchChange }: NavbarProps)
   return (
     <nav className="bg-gray-900 text-white shadow-lg border-b border-gray-700">
       <div className="container mx-auto px-4 py-3">
-        <div className="flex flex-col md:flex-row">
-          <div className="flex justify-between items-center">
-            <Link 
-              href="/" 
-              className="text-xl font-bold text-primary hover:text-primary/80 transition-colors duration-300 tracking-wide"
-            >
-              LAYOUTS
-            </Link>
+        <div className="flex flex-col md:flex-row md:items-center">
+          <div className="flex justify-between items-center md:flex-1">
+            {/* Left side - Logo and Search */}
+            <div className="flex items-center space-x-4">
+              <Link 
+                href="/" 
+                className="text-xl font-bold text-primary hover:text-primary/80 transition-colors duration-300 tracking-wide"
+              >
+                LAYOUTS
+              </Link>
+              
+              {/* Search Bar - Desktop */}
+              {onSearchChange && (
+                <div className="hidden md:block w-64">
+                  <input
+                    type="text"
+                    placeholder="Search by layout name..."
+                    value={localSearchTerm}
+                    onChange={handleSearchChange}
+                    className="w-full px-3 py-1 text-sm border border-gray-300 rounded-md bg-white text-gray-900 focus:ring-1 focus:ring-primary focus:border-primary"
+                  />
+                </div>
+              )}
+            </div>
             
             {/* Mobile Menu Button */}
             <div className="md:hidden">
@@ -58,8 +80,8 @@ export default function Navbar({ searchTerm = '', onSearchChange }: NavbarProps)
             </div>
           </div>
           
-          {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-1 ml-8">
+          {/* Desktop Menu - Right side */}
+          <div className="hidden md:flex items-center space-x-1">
             <Link 
               href="/ddf" 
               className={`text-sm px-3 py-2 rounded-md ${pathname === '/ddf' ? 'text-primary bg-gray-800' : 'text-gray-300'} hover:text-primary hover:bg-gray-800 transition-all duration-300 ease-in-out transform hover:scale-105`}
@@ -79,23 +101,46 @@ export default function Navbar({ searchTerm = '', onSearchChange }: NavbarProps)
               Exclusive Promos
             </Link>
             <Link 
+              href="/electronics" 
+              className={`text-sm px-3 py-2 rounded-md ${pathname === '/electronics' ? 'text-primary bg-gray-800' : 'text-gray-300'} hover:text-primary hover:bg-gray-800 transition-all duration-300 ease-in-out transform hover:scale-105`}
+            >
+              Electronic
+            </Link>
+            <Link 
               href="/jcd" 
               className={`text-sm px-3 py-2 rounded-md ${pathname === '/jcd' ? 'text-primary bg-gray-800' : 'text-gray-300'} hover:text-primary hover:bg-gray-800 transition-all duration-300 ease-in-out transform hover:scale-105`}
             >
               JCD
             </Link>
-            <Link 
-              href="/categories" 
-              className={`text-sm px-3 py-2 rounded-md ${pathname === '/categories' ? 'text-primary bg-gray-800' : 'text-gray-300'} hover:text-primary hover:bg-gray-800 transition-all duration-300 ease-in-out transform hover:scale-105`}
-            >
-              Categories
-            </Link>
-            <Link 
-              href="/vendor-list" 
-              className={`text-sm px-3 py-2 rounded-md ${pathname === '/vendor-list' ? 'text-primary bg-gray-800' : 'text-gray-300'} hover:text-primary hover:bg-gray-800 transition-all duration-300 ease-in-out transform hover:scale-105`}
-            >
-              Vendor List
-            </Link>
+            
+            {/* More Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger className={`text-sm px-3 py-2 rounded-md ${pathname === '/categories' || pathname === '/vendor-list' ? 'text-primary bg-gray-800' : 'text-gray-300'} hover:text-primary hover:bg-gray-800 transition-all duration-300 ease-in-out transform hover:scale-105 flex items-center gap-1`}>
+                More
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="bg-gray-800 border-gray-700">
+                <DropdownMenuItem asChild>
+                  <Link 
+                    href="/categories" 
+                    className={`w-full px-3 py-2 text-sm ${pathname === '/categories' ? 'text-primary' : 'text-gray-300'} hover:text-primary hover:bg-gray-700 transition-colors cursor-pointer`}
+                  >
+                    Categories
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link 
+                    href="/vendor-list" 
+                    className={`w-full px-3 py-2 text-sm ${pathname === '/vendor-list' ? 'text-primary' : 'text-gray-300'} hover:text-primary hover:bg-gray-700 transition-colors cursor-pointer`}
+                  >
+                    Vendor List
+                  </Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+            
             <Link 
               href="/about" 
               className={`text-sm px-3 py-2 rounded-md ${pathname === '/about' ? 'text-primary bg-gray-800' : 'text-gray-300'} hover:text-primary hover:bg-gray-800 transition-all duration-300 ease-in-out transform hover:scale-105`}
@@ -109,19 +154,6 @@ export default function Navbar({ searchTerm = '', onSearchChange }: NavbarProps)
               Contact
             </Link>
           </div>
-          
-          {/* Search Bar - Show on all pages */}
-          {onSearchChange && (
-            <div className="ml-auto mt-3 md:mt-0 w-full md:w-64">
-              <input
-                type="text"
-                placeholder="Search by layout name..."
-                value={localSearchTerm}
-                onChange={handleSearchChange}
-                className="w-full px-3 py-1 text-sm border border-gray-300 rounded-md bg-white text-gray-900 focus:ring-1 focus:ring-primary focus:border-primary"
-              />
-            </div>
-          )}
         </div>
 
         {/* Mobile Menu */}
@@ -147,6 +179,13 @@ export default function Navbar({ searchTerm = '', onSearchChange }: NavbarProps)
               onClick={() => setIsOpen(false)}
             >
               Exclusive Promos
+            </Link>
+            <Link 
+              href="/electronics" 
+              className={`block px-3 py-2 rounded-md text-sm ${pathname === '/electronics' ? 'text-primary bg-gray-800' : 'text-gray-300'} hover:text-primary hover:bg-gray-800 transition-all duration-300 transform hover:translate-x-2`}
+              onClick={() => setIsOpen(false)}
+            >
+              Electronic
             </Link>
             <Link 
               href="/jcd" 
