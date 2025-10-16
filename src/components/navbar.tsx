@@ -61,8 +61,8 @@ export default function Navbar({ searchTerm = '', onSearchChange }: NavbarProps)
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-1 ml-8">
             <Link 
-              href="/" 
-              className={`text-sm px-3 py-2 rounded-md ${pathname === '/' ? 'text-primary bg-gray-800' : 'text-gray-300'} hover:text-primary hover:bg-gray-800 transition-all duration-300 ease-in-out transform hover:scale-105`}
+              href="/ddf" 
+              className={`text-sm px-3 py-2 rounded-md ${pathname === '/ddf' ? 'text-primary bg-gray-800' : 'text-gray-300'} hover:text-primary hover:bg-gray-800 transition-all duration-300 ease-in-out transform hover:scale-105`}
             >
               DDF
             </Link>
@@ -128,8 +128,8 @@ export default function Navbar({ searchTerm = '', onSearchChange }: NavbarProps)
         <div className={`md:hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-96 opacity-100 mt-4' : 'max-h-0 opacity-0 overflow-hidden'}`}>
           <div className="space-y-1 pb-3 border-t border-gray-700 pt-3">
             <Link 
-              href="/" 
-              className={`block px-3 py-2 rounded-md text-sm ${pathname === '/' ? 'text-primary bg-gray-800' : 'text-gray-300'} hover:text-primary hover:bg-gray-800 transition-all duration-300 transform hover:translate-x-2`}
+              href="/ddf" 
+              className={`block px-3 py-2 rounded-md text-sm ${pathname === '/ddf' ? 'text-primary bg-gray-800' : 'text-gray-300'} hover:text-primary hover:bg-gray-800 transition-all duration-300 transform hover:translate-x-2`}
               onClick={() => setIsOpen(false)}
             >
               DDF
