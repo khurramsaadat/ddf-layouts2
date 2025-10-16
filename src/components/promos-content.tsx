@@ -2,7 +2,7 @@
 
 import { useState, useMemo, useEffect } from 'react';
 import { Table, TableHeader, TableBody, TableHead, TableRow, TableCell } from '@/components/ui/table';
-import { ArrowUpIcon, ArrowDownIcon, MagnifyingGlassIcon } from '@heroicons/react/24/solid';
+import { ArrowUpIcon, ArrowDownIcon } from '@heroicons/react/24/solid';
 import AnimatedCounter from './animated-counter';
 
 interface PromoLayout {

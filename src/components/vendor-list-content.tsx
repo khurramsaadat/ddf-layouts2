@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState, useMemo, useCallback } from 'react';
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from '@/components/ui/table';
 import { Checkbox } from '@/components/ui/checkbox';
 import {
@@ -109,7 +109,7 @@ export default function VendorListContent() {
   };
 
   // Get unique values for filter dropdowns with more specific matching
-  const getUniqueValuesForColumn = (searchTerms: string[], exactMatch = false) => {
+  const getUniqueValuesForColumn = useCallback((searchTerms: string[], exactMatch = false) => {
     const column = originalHeaders.find(header => {
       const headerLower = header.toLowerCase();
       if (exactMatch) {
@@ -124,22 +124,22 @@ export default function VendorListContent() {
       return uniqueValues;
     }
     return [];
-  };
+  }, [data, originalHeaders]);
 
   // Debug: Log available headers
   console.log('Available headers:', originalHeaders);
 
-  const companies = useMemo(() => getUniqueValuesForColumn(['company']), [data, originalHeaders]);
-  const brands = useMemo(() => getUniqueValuesForColumn(['brand']), [data, originalHeaders]);
+  const companies = useMemo(() => getUniqueValuesForColumn(['company']), [getUniqueValuesForColumn]);
+  const brands = useMemo(() => getUniqueValuesForColumn(['brand']), [getUniqueValuesForColumn]);
   const countries = useMemo(() => {
     // Try different variations for country
     let values = getUniqueValuesForColumn(['country/city']);
     if (values.length === 0) values = getUniqueValuesForColumn(['country']);
     if (values.length === 0) values = getUniqueValuesForColumn(['city']);
     return values;
-  }, [data, originalHeaders]);
-  const locations = useMemo(() => getUniqueValuesForColumn(['location']), [data, originalHeaders]);
-  const zones = useMemo(() => getUniqueValuesForColumn(['zone']), [data, originalHeaders]);
+  }, [getUniqueValuesForColumn]);
+  const locations = useMemo(() => getUniqueValuesForColumn(['location']), [getUniqueValuesForColumn]);
+  const zones = useMemo(() => getUniqueValuesForColumn(['zone']), [getUniqueValuesForColumn]);
 
   // Filter and sort data
   const filteredAndSortedData = useMemo(() => {

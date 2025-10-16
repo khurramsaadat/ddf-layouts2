@@ -41,10 +41,11 @@ export async function GET() {
     const headers = jsonData[0] as string[];
     
     // Convert data rows to objects
-    const data = jsonData.slice(1).map((row: any[]) => {
-      const obj: any = {};
+    const data = jsonData.slice(1).map((row) => {
+      const rowArray = row as unknown[];
+      const obj: Record<string, unknown> = {};
       headers.forEach((header, index) => {
-        obj[header] = row[index] || '';
+        obj[header] = rowArray[index] || '';
       });
       return obj;
     }).filter(row => {

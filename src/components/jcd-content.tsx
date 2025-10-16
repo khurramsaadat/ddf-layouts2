@@ -2,7 +2,6 @@
 
 import { useState, useMemo, useEffect } from 'react';
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from '@/components/ui/table';
-import { Checkbox } from '@/components/ui/checkbox';
 import AnimatedCounter from './animated-counter';
 
 interface JCDLayout {
@@ -147,11 +146,6 @@ export default function JCDContent() {
     setSortConfig({ key, direction });
   };
 
-  const handleColumnVisibilityChange = (column: string, isChecked: boolean) => {
-    setVisibleColumns((prev) =>
-      isChecked ? [...prev, column] : prev.filter((c) => c !== column)
-    );
-  };
 
   const displayHeaders = originalHeaders.filter(header => visibleColumns.includes(header));
 

@@ -23,7 +23,6 @@ export default function ElectronicsContent({ searchTerm = '' }: ElectronicsConte
   const [error, setError] = useState<string | null>(null);
   const [sortConfig, setSortConfig] = useState<SortConfig>({ key: 'Layout Name', direction: 'asc' });
   const [visibleColumns, setVisibleColumns] = useState<{ [key: string]: boolean }>({});
-  const [originalHeaders, setOriginalHeaders] = useState<string[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -37,10 +36,9 @@ export default function ElectronicsContent({ searchTerm = '' }: ElectronicsConte
         if (result.length > 0) {
           // Get original headers and set up column visibility
           const headers = Object.keys(result[0]);
-          setOriginalHeaders(headers);
           
           // Map 'Layout' to 'Layout Name' for display
-          const processedData = result.map((item: any) => {
+          const processedData = result.map((item: Record<string, unknown>) => {
             const processed = { ...item };
             if (processed.Layout) {
               processed['Layout Name'] = processed.Layout;
@@ -239,8 +237,6 @@ export default function ElectronicsContent({ searchTerm = '' }: ElectronicsConte
       </div>
     );
   }
-
-  const visibleColumnKeys = Object.keys(visibleColumns).filter(key => visibleColumns[key]);
 
   return (
     <div className="container mx-auto py-8 px-4">
