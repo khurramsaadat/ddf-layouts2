@@ -42,20 +42,20 @@ export default function Navbar({ searchTerm = '', onSearchChange }: NavbarProps)
             <div className="flex items-center space-x-4">
               <Link 
                 href="/" 
-                className="text-xl font-bold text-primary hover:text-primary/80 transition-colors duration-300 tracking-wide"
+                className="text-lg md:text-xl font-bold text-primary hover:text-primary/80 transition-colors duration-300 tracking-wide"
               >
                 LAYOUTS
               </Link>
               
               {/* Search Bar - Desktop */}
               {onSearchChange && (
-                <div className="hidden md:block w-64">
+                <div className="hidden md:block w-48 lg:w-64">
                   <input
                     type="text"
                     placeholder="Search by layout name..."
                     value={localSearchTerm}
                     onChange={handleSearchChange}
-                    className="w-full px-3 py-1 text-sm border border-gray-300 rounded-md bg-white text-gray-900 focus:ring-1 focus:ring-primary focus:border-primary"
+                    className="w-full px-2 md:px-3 py-1 text-xs md:text-sm border border-gray-300 rounded-md bg-white text-gray-900 focus:ring-1 focus:ring-primary focus:border-primary"
                   />
                 </div>
               )}
@@ -161,63 +161,63 @@ export default function Navbar({ searchTerm = '', onSearchChange }: NavbarProps)
           <div className="space-y-1 pb-3 border-t border-gray-700 pt-3">
             <Link 
               href="/ddf" 
-              className={`block px-3 py-2 rounded-md text-sm ${pathname === '/ddf' ? 'text-primary bg-gray-800' : 'text-gray-300'} hover:text-primary hover:bg-gray-800 transition-all duration-300 transform hover:translate-x-2`}
+              className={`block px-3 py-2 rounded-md text-xs md:text-sm ${pathname === '/ddf' ? 'text-primary bg-gray-800' : 'text-gray-300'} hover:text-primary hover:bg-gray-800 transition-all duration-300 transform hover:translate-x-2`}
               onClick={() => setIsOpen(false)}
             >
               DDF
             </Link>
             <Link 
               href="/promos" 
-              className={`block px-3 py-2 rounded-md text-sm ${pathname === '/promos' ? 'text-primary bg-gray-800' : 'text-gray-300'} hover:text-primary hover:bg-gray-800 transition-all duration-300 transform hover:translate-x-2`}
+              className={`block px-3 py-2 rounded-md text-xs md:text-sm ${pathname === '/promos' ? 'text-primary bg-gray-800' : 'text-gray-300'} hover:text-primary hover:bg-gray-800 transition-all duration-300 transform hover:translate-x-2`}
               onClick={() => setIsOpen(false)}
             >
               Promos
             </Link>
             <Link 
               href="/exclusive-promos" 
-              className={`block px-3 py-2 rounded-md text-sm ${pathname === '/exclusive-promos' ? 'text-primary bg-gray-800' : 'text-gray-300'} hover:text-primary hover:bg-gray-800 transition-all duration-300 transform hover:translate-x-2`}
+              className={`block px-3 py-2 rounded-md text-xs md:text-sm ${pathname === '/exclusive-promos' ? 'text-primary bg-gray-800' : 'text-gray-300'} hover:text-primary hover:bg-gray-800 transition-all duration-300 transform hover:translate-x-2`}
               onClick={() => setIsOpen(false)}
             >
               Exclusive Promos
             </Link>
             <Link 
               href="/electronics" 
-              className={`block px-3 py-2 rounded-md text-sm ${pathname === '/electronics' ? 'text-primary bg-gray-800' : 'text-gray-300'} hover:text-primary hover:bg-gray-800 transition-all duration-300 transform hover:translate-x-2`}
+              className={`block px-3 py-2 rounded-md text-xs md:text-sm ${pathname === '/electronics' ? 'text-primary bg-gray-800' : 'text-gray-300'} hover:text-primary hover:bg-gray-800 transition-all duration-300 transform hover:translate-x-2`}
               onClick={() => setIsOpen(false)}
             >
               Electronic
             </Link>
             <Link 
               href="/jcd" 
-              className={`block px-3 py-2 rounded-md text-sm ${pathname === '/jcd' ? 'text-primary bg-gray-800' : 'text-gray-300'} hover:text-primary hover:bg-gray-800 transition-all duration-300 transform hover:translate-x-2`}
+              className={`block px-3 py-2 rounded-md text-xs md:text-sm ${pathname === '/jcd' ? 'text-primary bg-gray-800' : 'text-gray-300'} hover:text-primary hover:bg-gray-800 transition-all duration-300 transform hover:translate-x-2`}
               onClick={() => setIsOpen(false)}
             >
               JCD
             </Link>
             <Link 
               href="/categories" 
-              className={`block px-3 py-2 rounded-md text-sm ${pathname === '/categories' ? 'text-primary bg-gray-800' : 'text-gray-300'} hover:text-primary hover:bg-gray-800 transition-all duration-300 transform hover:translate-x-2`}
+              className={`block px-3 py-2 rounded-md text-xs md:text-sm ${pathname === '/categories' ? 'text-primary bg-gray-800' : 'text-gray-300'} hover:text-primary hover:bg-gray-800 transition-all duration-300 transform hover:translate-x-2`}
               onClick={() => setIsOpen(false)}
             >
               Categories
             </Link>
             <Link 
               href="/vendor-list" 
-              className={`block px-3 py-2 rounded-md text-sm ${pathname === '/vendor-list' ? 'text-primary bg-gray-800' : 'text-gray-300'} hover:text-primary hover:bg-gray-800 transition-all duration-300 transform hover:translate-x-2`}
+              className={`block px-3 py-2 rounded-md text-xs md:text-sm ${pathname === '/vendor-list' ? 'text-primary bg-gray-800' : 'text-gray-300'} hover:text-primary hover:bg-gray-800 transition-all duration-300 transform hover:translate-x-2`}
               onClick={() => setIsOpen(false)}
             >
               Vendor List
             </Link>
             <Link 
               href="/about" 
-              className={`block px-3 py-2 rounded-md text-sm ${pathname === '/about' ? 'text-primary bg-gray-800' : 'text-gray-300'} hover:text-primary hover:bg-gray-800 transition-all duration-300 transform hover:translate-x-2`}
+              className={`block px-3 py-2 rounded-md text-xs md:text-sm ${pathname === '/about' ? 'text-primary bg-gray-800' : 'text-gray-300'} hover:text-primary hover:bg-gray-800 transition-all duration-300 transform hover:translate-x-2`}
               onClick={() => setIsOpen(false)}
             >
               About
             </Link>
             <Link 
               href="/contact" 
-              className={`block px-3 py-2 rounded-md text-sm ${pathname === '/contact' ? 'text-primary bg-gray-800' : 'text-gray-300'} hover:text-primary hover:bg-gray-800 transition-all duration-300 transform hover:translate-x-2`}
+              className={`block px-3 py-2 rounded-md text-xs md:text-sm ${pathname === '/contact' ? 'text-primary bg-gray-800' : 'text-gray-300'} hover:text-primary hover:bg-gray-800 transition-all duration-300 transform hover:translate-x-2`}
               onClick={() => setIsOpen(false)}
             >
               Contact
@@ -231,7 +231,7 @@ export default function Navbar({ searchTerm = '', onSearchChange }: NavbarProps)
                   placeholder="Search by layout name..."
                   value={localSearchTerm}
                   onChange={handleSearchChange}
-                  className="w-full px-3 py-1 text-sm border border-gray-300 rounded-md bg-white text-gray-900 focus:ring-1 focus:ring-primary focus:border-primary"
+                  className="w-full px-2 py-1 text-xs border border-gray-300 rounded-md bg-white text-gray-900 focus:ring-1 focus:ring-primary focus:border-primary"
                 />
               </div>
             )}

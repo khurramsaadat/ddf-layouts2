@@ -139,7 +139,12 @@ export default function ElectronicsContent({ searchTerm = '' }: ElectronicsConte
     const specialLayouts = [
       'CA_DM801 Innov8 part1',
       'CA_DM801 Innov8 part2',
-      'CB_DM504_DM505_DM506'
+      'CB_DM504_DM505_DM506',
+      'CA_DM801 Innov8 part1.mp4',
+      'CA_DM801 Innov8 part2.mp4',
+      'CB_DM504.mp4',
+      'CB_DM505.mp4',
+      'CB_DM506.mp4'
     ];
     return specialLayouts.includes(layoutName);
   };
@@ -168,17 +173,17 @@ export default function ElectronicsContent({ searchTerm = '' }: ElectronicsConte
     return (
       <div className="bg-white rounded-lg shadow-sm border overflow-hidden">
         <div className="overflow-x-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs md:text-sm">
             <thead className="bg-gray-50">
               <tr>
                 {visibleColumnKeys.map((column) => (
                   <th
                     key={`${tableKey}-${column}`}
-                    className="px-2 py-2 text-left font-medium text-gray-700 cursor-pointer hover:bg-gray-100 transition-colors"
+                    className="px-1 md:px-2 py-1 md:py-2 text-left font-medium text-gray-700 cursor-pointer hover:bg-gray-100 transition-colors text-xs md:text-sm"
                     onClick={() => requestSort(column)}
                   >
                     <div className="flex items-center">
-                      {column}
+                      <span className="truncate">{column}</span>
                       {getSortIcon(column)}
                     </div>
                   </th>
@@ -192,14 +197,16 @@ export default function ElectronicsContent({ searchTerm = '' }: ElectronicsConte
                   className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}
                 >
                   {visibleColumnKeys.map((column) => (
-                    <td key={`${tableKey}-${index}-${column}`} className="px-2 py-1.5 text-gray-900">
-                      {column === 'Layout Name' ? (
-                        renderLayoutName(item[column]?.toString() || '')
-                      ) : column === 'Ratio' ? (
-                        parseFloat(item[column]?.toString() || '0').toFixed(2)
-                      ) : (
-                        item[column]?.toString() || ''
-                      )}
+                    <td key={`${tableKey}-${index}-${column}`} className="px-1 md:px-2 py-1 md:py-1.5 text-gray-900 text-xs md:text-sm">
+                      <div className="truncate max-w-[120px] md:max-w-none">
+                        {column === 'Layout Name' ? (
+                          renderLayoutName(item[column]?.toString() || '')
+                        ) : column === 'Ratio' ? (
+                          parseFloat(item[column]?.toString() || '0').toFixed(2)
+                        ) : (
+                          item[column]?.toString() || ''
+                        )}
+                      </div>
                     </td>
                   ))}
                 </tr>
@@ -239,22 +246,22 @@ export default function ElectronicsContent({ searchTerm = '' }: ElectronicsConte
   }
 
   return (
-    <div className="container mx-auto py-8 px-4">
-      <div className="mb-6">
-        <h1 className="text-2xl font-bold text-gray-900 mb-4">Electronic Layouts</h1>
+    <div className="container mx-auto py-4 md:py-8 px-2 md:px-4">
+      <div className="mb-4 md:mb-6">
+        <h1 className="text-lg md:text-2xl font-bold text-gray-900 mb-3 md:mb-4">Electronic Layouts</h1>
         
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-6">
+        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3 md:gap-4 mb-4 md:mb-6">
           <div className="flex items-center gap-2">
-            <span className="text-sm text-gray-600">Total Layouts:</span>
-            <span className="font-semibold text-primary">
+            <span className="text-xs md:text-sm text-gray-600">Total Layouts:</span>
+            <span className="font-semibold text-primary text-sm md:text-base">
               <AnimatedCounter end={sortedData.length} />
             </span>
           </div>
           
-          <div className="flex flex-wrap items-center gap-4">
-            <span className="text-sm font-medium text-gray-700">Column Visibility:</span>
+          <div className="flex flex-wrap items-center gap-2 md:gap-4">
+            <span className="text-xs md:text-sm font-medium text-gray-700">Column Visibility:</span>
             {Object.keys(visibleColumns).map((column) => (
-              <div key={column} className="flex items-center space-x-2">
+              <div key={column} className="flex items-center space-x-1 md:space-x-2">
                 <Checkbox
                   id={`column-${column}`}
                   checked={visibleColumns[column]}
