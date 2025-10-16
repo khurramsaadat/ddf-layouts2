@@ -1,0 +1,15 @@
+[build]
+  command = "pnpm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "18"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+# Ensure Excel files are served correctly
+[[headers]]
+  for = "/*.xlsx"
+  [headers.values]
+    Content-Type = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
