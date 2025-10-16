@@ -1,14 +1,24 @@
-import { Suspense } from 'react';
+'use client';
+
+import { useState } from 'react';
+import Navbar from '@/components/navbar';
 import Hero from '@/components/hero';
-import LayoutsTable from '@/components/layouts-table';
+import Footer from '@/components/footer';
 
 export default function DDFPage() {
+  const [searchTerm, setSearchTerm] = useState('');
+  
+  const handleSearchChange = (term: string) => {
+    setSearchTerm(term);
+  };
+  
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Suspense fallback={<div className="flex items-center justify-center min-h-screen">Loading...</div>}>
-        <Hero />
-        <LayoutsTable />
-      </Suspense>
+    <div className="flex flex-col min-h-screen">
+      <Navbar searchTerm={searchTerm} onSearchChange={handleSearchChange} />
+      <main className="flex-grow">
+        <Hero searchTerm={searchTerm} />
+      </main>
+      <Footer />
     </div>
   );
 }
